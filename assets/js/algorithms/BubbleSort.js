@@ -13,20 +13,20 @@ function doBubbleSort(array) {
     return array;
 }
 
-function doEnhancedBubbleSort(array) {
+async function doEnhancedBubbleSort(array) {
     var length = array.length;
     var isSwapped;
-    var count = 0;
+    var count = 1;
     do {
         isSwapped = false;
         for (var i = 0; i < length - count; i++) {
-            prepareSwappingStep(array[i], array[i + 1]);
+            await prepareSwappingStep(array[i], array[i + 1]);
             if (array[i] > array[i + 1]) {
                 isSwapped = true;
                 swapArrItem(array, i, i + 1);
-                swap(array[i], array[i + 1]);
+                await swap(array[i], array[i + 1]);
             }
-            endSwappingStep(array[i], array[i + 1]);
+            await endSwappingStep(array[i], array[i + 1]);
         }
         count++;
     }

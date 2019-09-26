@@ -22,11 +22,11 @@ generateListButton.onclick = function() {
     renderList(window.list);
 };
 
-sortButton.onclick = function() {
+sortButton.onclick = async function() {
     resetListButton.disabled = false;
     sortButton.disabled = true;
     sortingList = [...window.list];
-    getSortingAlgorithm(sortingList);
+    await getSortingAlgorithm(sortingList);
     console.log(window.list);
 };
 
@@ -54,12 +54,12 @@ $('#listSize').on('keyup', (e) => {
 });
 // End Event handlers
 
-function getSortingAlgorithm(list) {
+async function getSortingAlgorithm(list) {
     switch (algoSelector.value) {
         case '0':
             return doBubbleSort(list);
         case '1':
-            return doEnhancedBubbleSort(list);
+            return await doEnhancedBubbleSort(list);
         case '2':
             return doInsertionSort(list);
         default:

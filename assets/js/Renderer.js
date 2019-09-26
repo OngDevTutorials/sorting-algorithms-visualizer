@@ -13,37 +13,43 @@ function renderList(list) {
     listContainer.innerHTML = newUlContent;
 }
 
-function prepareSwappingStep(firstId, secondId) {
-    changeBackgroundColor(firstId, 'red');
-    changeBackgroundColor(secondId, 'red');
+async function prepareSwappingStep(firstId, secondId) {
+    await changeBackgroundColor(firstId, 'red');
+    await changeBackgroundColor(secondId, 'red');
 }
 
-function swap(firstId, secondId) {
-    setTimeout(() => {
-        var temp = $(`#item-${firstId}`).height();
-        $(`#item-${firstId}`).height($(`#item-${secondId}`).height());
-        $(`#item-${secondId}`).height(temp);
+async function swap(firstId, secondId) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            var temp = $(`#item-${firstId}`).height();
+            $(`#item-${firstId}`).height($(`#item-${secondId}`).height());
+            $(`#item-${secondId}`).height(temp);
 
-        $(`#item-${firstId}`).prop('id', 'firstTempId');
-        $(`#item-${secondId}`).prop('id', 'secondTempId');
-        $(`#firstTempId`).prop('id', `item-${secondId}`);
-        $(`#secondTempId`).prop('id', `item-${firstId}`);
+            $(`#item-${firstId}`).prop('id', 'firstTempId');
+            $(`#item-${secondId}`).prop('id', 'secondTempId');
+            $(`#firstTempId`).prop('id', `item-${secondId}`);
+            $(`#secondTempId`).prop('id', `item-${firstId}`);
 
-        var valTemp = $(`#item-${firstId}`).html();
-        if (valTemp != '' && valTemp != undefined && valTemp != null) {
-            $(`#item-${firstId}`).html($(`#item-${secondId}`).html());
-            $(`#item-${secondId}`).html(valTemp);
-        }
-    }, 0);
+            var valTemp = $(`#item-${firstId}`).html();
+            if (valTemp != '' && valTemp != undefined && valTemp != null) {
+                $(`#item-${firstId}`).html($(`#item-${secondId}`).html());
+                $(`#item-${secondId}`).html(valTemp);
+            }
+            resolve()
+        });
+    });
 }
 
-function endSwappingStep(firstId, secondId) {
-    changeBackgroundColor(firstId, '#343a40');
-    changeBackgroundColor(secondId, '#343a40');
+async function endSwappingStep(firstId, secondId) {
+    await changeBackgroundColor(firstId, '#343a40');
+    await changeBackgroundColor(secondId, '#343a40');
 }
 
-function changeBackgroundColor(itemId, color) {
-    setTimeout(() => {
-        $(`#item-${itemId}`).css('backgroundColor', color);
-    }, 0);
+async function changeBackgroundColor(itemId, color) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            $(`#item-${itemId}`).css('backgroundColor', color);
+            resolve()
+        });
+    });
 }

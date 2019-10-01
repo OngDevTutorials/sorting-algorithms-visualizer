@@ -1,13 +1,13 @@
-function doBubbleSort(array) {
+async function doBubbleSort(array) {
     var length = array.length;
     for (var i = 0; i < length; i++) {
         for (var j = 0; j < length - 1; j++) {
-            prepareSwappingStep(array[j], array[j + 1]);
+            await prepareSwappingStep(array[j], array[j + 1]);
             if (array[j] > array[j + 1]) {
                 swapArrItem(array, j, j + 1);
-                swap(array[j], array[j + 1]);
+                await swap(array[j], array[j + 1]);
             }
-            endSwappingStep(array[j], array[j + 1]);
+            await endSwappingStep(array[j], array[j + 1]);
         }
     }
     return array;

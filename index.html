@@ -50,20 +50,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="./assets/js/Renderer.js"></script>
     <script src="./assets/js/RandomArrayGenerator.js"></script>
-    <script>
-        (function() {
-            var listSize = document.getElementById('listSize');
-            var listSizeSlider = document.getElementById('listSizeSlider');
-            listSize.value = listSizeSlider.value;
-            window.list = generateRandomList(listSizeSlider.value);
-            renderList(window.list);
-            listSizeSlider.oninput = function() {
-                listSize.value = listSizeSlider.value;
-                window.list = generateRandomList(listSizeSlider.value);
-                renderList(window.list);
-            }
-        })();
-    </script>
     <script src="./assets/js/Colors.js"></script>
     <!-- Algorithm -->
     <script src="./assets/js/algorithms/BubbleSort.js"></script>

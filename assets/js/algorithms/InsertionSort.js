@@ -9,9 +9,10 @@ async function doInsertionSort(array) {
 
         var j = i - 1;
         while (j >= 0) {
+            if (isStopTriggered) return;
             if (array[j] > key) {
                 await insert(array[j], 'key');
-                array[j+1]= array[j];
+                array[j + 1] = array[j];
                 j--;
             } else {
                 break;

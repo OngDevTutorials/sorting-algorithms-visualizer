@@ -5,6 +5,22 @@ var algoSelector = document.getElementById('algo-selector');
 var sortingAlgorithms = ["Basic Bubble Sort", "Enhanced Bubble Sort", "Insertion Sort", "Quick Sort"];
 var currentAlgorithm = "";
 var sortingList = [];
+var isStopTriggered = false;
+
+(function() {
+    var listSize = document.getElementById('listSize');
+    var listSizeSlider = document.getElementById('listSizeSlider');
+    listSize.value = listSizeSlider.value;
+    window.list = generateRandomList(listSizeSlider.value);
+    renderList(window.list);
+    listSizeSlider.oninput = function() {
+        listSize.value = listSizeSlider.value;
+        window.list = generateRandomList(listSizeSlider.value);
+        sortButton.disabled = isNaN(algoSelector.value);
+        isStopTriggered = true;
+        renderList(window.list);
+    }
+})();
 
 (function() {
     sortingAlgorithms.forEach((item, index) => {
@@ -19,6 +35,8 @@ var sortingList = [];
 generateListButton.onclick = function() {
     var size = document.getElementById('listSizeSlider').value;
     window.list = generateRandomList(size);
+    sortButton.disabled = isNaN(algoSelector.value);
+    isStopTriggered = true;
     renderList(window.list);
 };
 
@@ -26,18 +44,20 @@ sortButton.onclick = async function() {
     resetListButton.disabled = false;
     sortButton.disabled = true;
     sortingList = [...window.list];
+    isStopTriggered = false;
     await getSortingAlgorithm(sortingList);
-    console.log(window.list);
 };
 
 resetListButton.onclick = function() {
     resetListButton.disabled = true;
     sortButton.disabled = false;
+    isStopTriggered = true;
     renderList(window.list);
 };
 
 algoSelector.onchange = function() {
     sortButton.disabled = isNaN(algoSelector.value);
+    isStopTriggered = true;
     renderList(window.list);
 };
 

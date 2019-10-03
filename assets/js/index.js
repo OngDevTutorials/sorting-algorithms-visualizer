@@ -2,7 +2,12 @@ var resetListButton = document.getElementById('reset-list-button');
 var generateListButton = document.getElementById('generate-button');
 var sortButton = document.getElementById('sort-button');
 var algoSelector = document.getElementById('algo-selector');
-var sortingAlgorithms = ["Basic Bubble Sort", "Enhanced Bubble Sort", "Insertion Sort", "Quick Sort"];
+var sortingAlgorithms = [
+    "Basic Bubble Sort",
+    "Enhanced Bubble Sort",
+    "Insertion Sort",
+    "Quick Sort"
+];
 var currentAlgorithm = "";
 var sortingList = [];
 var isStopTriggered = false;
@@ -82,6 +87,8 @@ async function getSortingAlgorithm(list) {
             return await doEnhancedBubbleSort(list);
         case '2':
             return await doInsertionSort(list);
+        case '3':
+            return doQuickSort(list);
         default:
             return 'err';
     }

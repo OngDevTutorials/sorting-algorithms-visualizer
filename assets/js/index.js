@@ -11,6 +11,7 @@ var sortingAlgorithms = [
 var currentAlgorithm = "";
 var sortingList = [];
 var isStopTriggered = false;
+var baseColor = '#343a40';
 
 (function() {
     var listSize = document.getElementById('listSize');
@@ -88,7 +89,7 @@ async function getSortingAlgorithm(list) {
         case '2':
             return await doInsertionSort(list);
         case '3':
-            return doQuickSort(list);
+            return await doQuickSort(list);
         default:
             return 'err';
     }

@@ -1,16 +1,21 @@
 var listContainer = document.getElementById('list-container');
 var listDisplayer = document.getElementById('list-displayer');
 
-function renderList(list) {
-    console.log(list);
-    listContainer.innerHTML = "";
-    var size = list.length;
-    window.rateToFillContainer = (listContainer.clientHeight - 20) / list.length;
-    var newUlContent = "";
-    list.forEach(item => {
-        newUlContent += `<div id="item-${item}" style="height:${item * window.rateToFillContainer}px;">${listContainer.clientWidth/size > 17 ? item : ''}</div>`
+async function renderList(list) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log(list);
+            listContainer.innerHTML = "";
+            var size = list.length;
+            window.rateToFillContainer = (listContainer.clientHeight - 20) / list.length;
+            var newUlContent = "";
+            list.forEach(item => {
+                newUlContent += `<div id="item-${item}" style="height:${item * window.rateToFillContainer}px;">${listContainer.clientWidth/size > 17 ? item : ''}</div>`
+            });
+            listContainer.innerHTML = newUlContent;
+            resolve();
+        });
     });
-    listContainer.innerHTML = newUlContent;
 }
 
 async function prepareSwappingStep(firstId, secondId) {

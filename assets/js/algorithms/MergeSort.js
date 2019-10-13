@@ -3,6 +3,7 @@ async function doMergeSort(array) {
 }
 
 async function mergeSort(originalArray, array, startIndex) {
+    if (isStopTriggered) return;
     if (array.length < 2) {
         return array;
     }

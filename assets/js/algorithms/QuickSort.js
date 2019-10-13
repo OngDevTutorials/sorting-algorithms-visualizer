@@ -3,6 +3,7 @@ async function doQuickSort(array) {
 }
 
 async function quickSort(items, left, right) {
+    if (isStopTriggered) return;
     var index;
     if (items.length > 1) {
         index = await partition(items, left, right); //index returned from partition
@@ -17,6 +18,7 @@ async function quickSort(items, left, right) {
 }
 
 async function partition(items, left, right) {
+    if (isStopTriggered) return;
     var pivot = await getPivot(items, left, right);
     debugger;
     await changeBackgroundColor(pivot, 'green');
@@ -24,6 +26,10 @@ async function partition(items, left, right) {
     i = left, //left pointer
         j = right; //right pointer
     while (i <= j) {
+        if (isStopTriggered) {
+            await endSwappingStep(items[i], items[j]);
+            return;
+        }
         await changeBackgroundColor(items[i], 'blue');
         await changeBackgroundColor(items[j], 'red');
         while (items[i] < pivot) {
@@ -46,11 +52,6 @@ async function partition(items, left, right) {
         if (i <= j) {
             await swap(items[i], items[j]);
             swapArrItem(items, i, j); //sawpping two elements
-
-            if (item[j] != pivot) {
-                await swap(pivot, items[j]);
-                swapArrItem(items, items.indexOf(pivot), j);
-            }
 
             await endSwappingStep(items[i], items[j]);
             i++;

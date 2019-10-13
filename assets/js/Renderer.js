@@ -4,7 +4,6 @@ var listDisplayer = document.getElementById('list-displayer');
 async function renderList(list) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log(list);
             listContainer.innerHTML = "";
             var size = list.length;
             window.rateToFillContainer = (listContainer.clientHeight - 20) / list.length;

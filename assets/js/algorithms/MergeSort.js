@@ -3,7 +3,6 @@ async function doMergeSort(array) {
 }
 
 async function mergeSort(originalArray, array, startIndex) {
-    debugger;
     if (array.length < 2) {
         return array;
     }

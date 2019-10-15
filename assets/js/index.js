@@ -7,7 +7,8 @@ var sortingAlgorithms = [
     "Enhanced Bubble Sort",
     "Insertion Sort",
     "Quick Sort",
-    "Merge Sort"
+    "Merge Sort",
+    "Selection Sort"
 ];
 var currentAlgorithm = "";
 var sortingList = [];
@@ -93,6 +94,8 @@ async function getSortingAlgorithm(list) {
             return await doQuickSort(list);
         case '4':
             return await doMergeSort(list);
+        case '5':
+            return await doSelectionSort(list);
         default:
             return 'err';
     }

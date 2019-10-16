@@ -17,6 +17,7 @@ async function doHeapSort(array) {
 }
 
 async function heapify(array, length, index) {
+    if (isStopTriggered) return;
     let largestIndex = index;
     await changeBackgroundColor(array[largestIndex], 'orange');
     let left = index * 2 + 1;

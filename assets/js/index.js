@@ -8,7 +8,8 @@ var sortingAlgorithms = [
     "Insertion Sort",
     "Quick Sort",
     "Merge Sort",
-    "Selection Sort"
+    "Selection Sort",
+    "Heap Sort"
 ];
 var currentAlgorithm = "";
 var sortingList = [];
@@ -96,6 +97,8 @@ async function getSortingAlgorithm(list) {
             return await doMergeSort(list);
         case '5':
             return await doSelectionSort(list);
+        case '6':
+            return await doHeapSort(list);
         default:
             return 'err';
     }

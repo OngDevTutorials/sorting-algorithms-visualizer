@@ -13,7 +13,7 @@ async function renderList(list) {
             });
             listContainer.innerHTML = newUlContent;
             resolve();
-        });
+        }, window.delaySpeed);
     });
 }
 
@@ -40,7 +40,7 @@ async function swap(firstId, secondId) {
                 $(`#item-${secondId}`).html(valTemp);
             }
             resolve()
-        });
+        }, window.delaySpeed);
     });
 }
 
@@ -54,6 +54,6 @@ async function changeBackgroundColor(itemId, color) {
         setTimeout(() => {
             $(`#item-${itemId}`).css('backgroundColor', color);
             resolve()
-        });
+        }, window.delaySpeed);
     });
 }

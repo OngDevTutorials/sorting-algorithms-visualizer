@@ -32,7 +32,7 @@ async function changeHeightAndId(id, height, newId) {
             $(`#item-${id}`).height(height);
             $(`#item-${id}`).prop('id', `item-${newId}`);
             resolve()
-        });
+        }, window.delaySpeed);
     });
 }
 
@@ -55,6 +55,6 @@ async function insert(current, next) {
             $(`#next`).prop('id', `item-${current}`);
 
             resolve()
-        });
+        }, window.delaySpeed);
     });
 }

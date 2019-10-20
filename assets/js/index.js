@@ -2,6 +2,7 @@ var resetListButton = document.getElementById('reset-list-button');
 var generateListButton = document.getElementById('generate-button');
 var sortButton = document.getElementById('sort-button');
 var algoSelector = document.getElementById('algo-selector');
+var delaySpeed;
 var sortingAlgorithms = [
     "Basic Bubble Sort",
     "Enhanced Bubble Sort",
@@ -28,6 +29,17 @@ var baseColor = '#343a40';
         sortButton.disabled = isNaN(algoSelector.value);
         isStopTriggered = true;
         renderList(window.list);
+    }
+})();
+
+(function() {
+    var delaySpeedElement = document.getElementById('delaySpeed');
+    var delaySpeedSlider = document.getElementById('delaySpeedSlider');
+    window.delaySpeed = delaySpeedElement.value = delaySpeedSlider.value;
+    delaySpeedSlider.oninput = function() {
+        window.delaySpeed = delaySpeedElement.value = delaySpeedSlider.value;
+        //isStopTriggered = true;
+        //sortButton.disabled = isNaN(algoSelector.value);
     }
 })();
 
@@ -73,6 +85,8 @@ algoSelector.onchange = function() {
 $('#listSize').blur(() => {
     var size = $('#listSize').val();
     $('#listSizeSlider').val(size);
+    isStopTriggered = true;
+    sortButton.disabled = isNaN(algoSelector.value);
     generateRandomListAndRender(size);
 })
 

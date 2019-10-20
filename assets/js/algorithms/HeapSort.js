@@ -7,6 +7,7 @@ async function doHeapSort(array) {
     }
 
     for (let i = length - 1; i >= 0; i--) {
+        if (isStopTriggered) return;
         await changeBackgroundColor(array[0], 'orange');
         await changeBackgroundColor(array[i], 'red');
         await swap(array[0], array[i]);
@@ -18,25 +19,27 @@ async function doHeapSort(array) {
 
 async function heapify(array, length, index) {
     if (isStopTriggered) return;
-    let largestIndex = index;
+    let largestIndex = lastLargestIndex = index;
     await changeBackgroundColor(array[largestIndex], 'orange');
     let left = index * 2 + 1;
     let right = left + 1;
     await changeBackgroundColor(array[left], 'red');
     await changeBackgroundColor(array[right], 'blue');
 
+
     if (left < length && array[left] > array[largestIndex]) {
-        await changeBackgroundColor(array[largestIndex], '#343a40');
+
         largestIndex = left;
-        await changeBackgroundColor(array[largestIndex], 'orange');
+
     }
 
     if (right < length && array[right] > array[largestIndex]) {
-        await changeBackgroundColor(array[largestIndex], '#343a40');
+        // await changeBackgroundColor(array[largestIndex], '#343a40');
         largestIndex = right;
-        await changeBackgroundColor(array[largestIndex], 'orange');
+        // await changeBackgroundColor(array[largestIndex], 'orange');
     }
-
+    await changeBackgroundColor(array[lastLargestIndex], '#343a40');
+    await changeBackgroundColor(array[largestIndex], 'orange');
     if (largestIndex != index) {
         await swap(array[index], array[largestIndex]);
         swapArrItem(array, index, largestIndex);

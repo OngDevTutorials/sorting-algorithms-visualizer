@@ -29,7 +29,7 @@
                         <span style="margin-left: 10px" class="white-text">2000</span>
                     </div>
                 </li>
-                <li class="nav-item flex-column-container">
+                <li class="nav-item flex-column-container border-right">
                     <select class="custom-select large-height" style="padding-top: 4px" id="algo-selector">
                         <option selected>Select Sorting Algorithm</option>
                     </select>
@@ -54,6 +54,16 @@
         </div>
     </nav>
     <div class="container-fluid">
+        <div class="row" id="algo-info">
+            <div class="col-6">
+                <h4>Time complexity</h4>
+                Best case:&ensp;<b><span id="bestCaseTimeComplex"></span></b>&emsp;Average case:&ensp;<b><span id="averageCaseTimeComplex"></span></b>&emsp;Worst case:&ensp;<b><span id="worstCaseTimeComplex"></span></b>
+            </div>
+            <div class="col-6">
+                <h4>Memory complexity</h4>
+                Worst case:&ensp;<b><span id="worstCaseMemoryComplex"></span></b>
+            </div>
+        </div>
         <div id="list-container">
         </div>
     </div>

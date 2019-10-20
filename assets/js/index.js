@@ -3,14 +3,83 @@ var generateListButton = document.getElementById('generate-button');
 var sortButton = document.getElementById('sort-button');
 var algoSelector = document.getElementById('algo-selector');
 var delaySpeed;
-var sortingAlgorithms = [
-    "Basic Bubble Sort",
-    "Enhanced Bubble Sort",
-    "Insertion Sort",
-    "Quick Sort",
-    "Merge Sort",
-    "Selection Sort",
-    "Heap Sort"
+var sortingAlgorithms = [{
+        "name": "Basic Bubble Sort",
+        "timeComplexity": {
+            "best": "&Theta;(n)",
+            "average": "&Theta;(n<sup>2</sup>)",
+            "worst": "&Theta;(n<sup>2</sup>)"
+        },
+        "memoryComplexity": {
+            "worst": "&Theta;(1)"
+        }
+    },
+    {
+        "name": "Enhanced Bubble Sort",
+        "timeComplexity": {
+            "best": "&Theta;(n)",
+            "average": "&Theta;(n<sup>2</sup>)",
+            "worst": "&Theta;(n<sup>2</sup>)"
+        },
+        "memoryComplexity": {
+            "worst": "&Theta;(1)"
+        }
+    },
+    {
+        "name": "Insertion Sort",
+        "timeComplexity": {
+            "best": "&Theta;(n)",
+            "average": "&Theta;(n<sup>2</sup>)",
+            "worst": "&Theta;(n<sup>2</sup>)"
+        },
+        "memoryComplexity": {
+            "worst": "&Theta;(1)"
+        }
+    },
+    {
+        "name": "Quick Sort",
+        "timeComplexity": {
+            "best": "&Theta;(nlogn)",
+            "average": "&Theta;(nlogn)",
+            "worst": "&Theta;(n<sup>2</sup>)"
+        },
+        "memoryComplexity": {
+            "worst": "&Theta;(logn)"
+        }
+    },
+    {
+        "name": "Merge Sort",
+        "timeComplexity": {
+            "best": "&Theta;(nlogn)",
+            "average": "&Theta;(nlogn)",
+            "worst": "&Theta;(nlogn)"
+        },
+        "memoryComplexity": {
+            "worst": "&Theta;(n)"
+        }
+    },
+    {
+        "name": "Selection Sort",
+        "timeComplexity": {
+            "best": "&Theta;(n<sup>2</sup>)",
+            "average": "&Theta;(n<sup>2</sup>)",
+            "worst": "&Theta;(n<sup>2</sup>)"
+        },
+        "memoryComplexity": {
+            "worst": "&Theta;(1)"
+        }
+    },
+    {
+        "name": "Heap Sort",
+        "timeComplexity": {
+            "best": "&Theta;(nlogn)",
+            "average": "&Theta;(nlogn)",
+            "worst": "&Theta;(nlogn)"
+        },
+        "memoryComplexity": {
+            "worst": "&Theta;(1)"
+        }
+    }
 ];
 var currentAlgorithm = "";
 var sortingList = [];
@@ -47,7 +116,7 @@ var baseColor = '#343a40';
     sortingAlgorithms.forEach((item, index) => {
         var option = document.createElement("option");
         option.value = index;
-        option.innerHTML = item;
+        option.innerHTML = item.name;
         algoSelector.appendChild(option);
     });
 })();
@@ -77,6 +146,7 @@ resetListButton.onclick = function() {
 };
 
 algoSelector.onchange = function() {
+    updateAlgoInfo(algoSelector.value);
     sortButton.disabled = isNaN(algoSelector.value);
     isStopTriggered = true;
     renderList(window.list);
@@ -116,6 +186,22 @@ async function getSortingAlgorithm(list) {
         default:
             return 'err';
     }
+}
+
+function updateAlgoInfo(algo) {
+    updateTimeComplexity(algo);
+    updateMemoryComplexity(algo);
+}
+
+function updateTimeComplexity(algo) {
+    let isInvalidAlgo = isNaN(algo);
+    $(`#bestCaseTimeComplex`).html(isInvalidAlgo ? "" : sortingAlgorithms[algo].timeComplexity.best);
+    $(`#averageCaseTimeComplex`).html(isInvalidAlgo ? "" : sortingAlgorithms[algo].timeComplexity.average);
+    $(`#worstCaseTimeComplex`).html(isInvalidAlgo ? "" : sortingAlgorithms[algo].timeComplexity.worst);
+}
+
+function updateMemoryComplexity(algo) {
+    $(`#worstCaseMemoryComplex`).html(isNaN(algo) ? "" : sortingAlgorithms[algo].memoryComplexity.worst);
 }
 
 function generateRandomListAndRender(size) {

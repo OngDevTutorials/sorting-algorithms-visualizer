@@ -91,7 +91,7 @@ button {
 
 #list-container {
     margin: 20px auto;
-    height: 720px;
+    height: 650px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -105,4 +105,8 @@ button {
     background-color: #343a40;
     text-align: center;
     color: white;
+}
+
+#algo-info span {
+    font-size: 20px;
 }
